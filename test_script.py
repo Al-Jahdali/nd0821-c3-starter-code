@@ -1,7 +1,7 @@
 import requests
 
 # Define the URL of the FastAPI endpoint
-url = 'http://127.0.0.1:8000/inference'
+url = 'https://test-cicd-0b79cce14943.herokuapp.com/inference'
 
 # Example payload with valid data
 data = {
