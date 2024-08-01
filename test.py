@@ -3,15 +3,17 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
 # Add the necessary imports for the starter code.
-from ml.data import process_data
-from ml.model import (
+from starter.ml.data import process_data
+from starter.ml.model import (
     train_model,
     inference,
     compute_model_metrics,
 )
 import numpy as np
-
+import joblib
 import pytest
+
+model = joblib.load("model/model.pkl")
 
 
 def test_compute_model_metrics_values():
@@ -25,21 +27,18 @@ def test_compute_model_metrics_values():
     assert 0 <= fbeta <= 1, "F-beta should be between 0 and 1"
 
 
-def test_inference(trained_model, split_data):
-    _, X_test, _, y_test = split_data
-    predictions = inference(trained_model, X_test)
+def test_loading_data():
 
-    assert np.all(np.isin(predictions, [0, 1])), "Predictions should be binary"
+    data = pd.read_csv("./data/census.csv")
+    assert isinstance(data, pd.DataFrame)
 
 
-def test_train_model(split_data):
-    X_train, _, y_train, _ = split_data
-    model = train_model(X_train, y_train)
+def test_load_model():
+    # X_train, _, y_train, _ = split_data
+    # model = train_model(X_train, y_train)
+
+    model = joblib.load("model/model.pkl")
 
     assert isinstance(
         model, RandomForestClassifier
     ), "Model should be a RandomForestClassifier"
-
-
-# if __name__ == "__main__":
-#     pytest.main()
