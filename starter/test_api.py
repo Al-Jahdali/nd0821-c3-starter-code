@@ -4,10 +4,12 @@ from main import app  # Make sure to import your FastAPI app
 
 client = TestClient(app)
 
+
 def test_root():
-    response = client.get('/')
+    response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {'message': 'Hello World'}
+    assert response.json() == {"message": "Hello World"}
+
 
 def test_inference_valid_data():
     # Example valid data
@@ -25,12 +27,13 @@ def test_inference_valid_data():
         "capital-gain": 1111,
         "capital-loss": 0,
         "hours-per-week": 60,
-        "native-country": "United-States"
+        "native-country": "United-States",
     }
-    
-    response = client.post('/inference', json=data)
+
+    response = client.post("/inference", json=data)
     assert response.status_code == 200
-    assert 'predictions' in response.json()
+    assert "predictions" in response.json()
+
 
 def test_inference_missing_field():
     # Example data with a missing required field
@@ -48,11 +51,12 @@ def test_inference_missing_field():
         "capital-gain": 1111,
         "capital-loss": 0,
         "hours-per-week": 60,
-        "native-country": "United-States"
+        "native-country": "United-States",
     }
-    
-    response = client.post('/inference', json=data)
+
+    response = client.post("/inference", json=data)
     assert response.status_code == 422  # Unprocessable Entity, due to validation error
+
 
 def test_inference_valid_data_content():
     # Example valid data
@@ -70,8 +74,8 @@ def test_inference_valid_data_content():
         "capital-gain": 1111,
         "capital-loss": 0,
         "hours-per-week": 60,
-        "native-country": "United-States"
+        "native-country": "United-States",
     }
-    
-    response = client.post('/inference', json=data)
+
+    response = client.post("/inference", json=data)
     assert response.text == '{"predictions":[0]}'

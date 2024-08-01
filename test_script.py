@@ -1,7 +1,7 @@
 import requests
 
 # Define the URL of the FastAPI endpoint
-url = 'https://test-cicd-0b79cce14943.herokuapp.com/inference'
+url = "https://test-cicd-0b79cce14943.herokuapp.com/inference"
 
 # Example payload with valid data
 data = {
@@ -18,7 +18,7 @@ data = {
     "capital-gain": 1111,
     "capital-loss": 0,
     "hours-per-week": 60,
-    "native-country": "United-States"
+    "native-country": "United-States",
 }
 
 # Send POST request to the FastAPI endpoint

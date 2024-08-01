@@ -1,7 +1,7 @@
 import requests
 
 # Define the URL of the FastAPI endpoint
-url = 'http://127.0.0.1:8000/inference'
+url = "http://127.0.0.1:8000/inference"
 
 # Example payload with valid data
 data = {
@@ -18,7 +18,7 @@ data = {
     "capital-gain": 1111,
     "capital-loss": 0,
     "hours-per-week": 60,
-    "native-country": "United-States"
+    "native-country": "United-States",
 }
 
 # Send POST request to the FastAPI endpoint
